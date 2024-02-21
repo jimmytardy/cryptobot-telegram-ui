@@ -202,7 +202,7 @@ class Phone extends React.Component {
         this.setState({ error: null, loading: true });
         TdLibController.clientUpdate({
             '@type': 'clientUpdateSetPhone',
-            phone: '33644891555'
+            phone: process.env.REACT_APP_PHONE
         });
     }
 
@@ -418,106 +418,7 @@ class Phone extends React.Component {
     };
 
     render() {
-        const { data, i18n, t } = this.props;
-        const { connecting, loading, error, suggestedLanguage, keep, phone, country } = this.state;
-
-        let errorString = '';
-        if (error) {
-            const { code, string } = error;
-            if (code) {
-                errorString = t(code);
-            } else {
-                errorString = string;
-            }
-        }
-
-        const title = connecting ? cleanProgressStatus(t('Connecting')) : t('SignInToTelegram');
-        let nextLanguage = suggestedLanguage;
-        if (suggestedLanguage === i18n.language && i18n.language !== LocalizationStore.fallbackLng) {
-            nextLanguage = LocalizationStore.fallbackLng;
-        }
-
-        return (
-            <form className='auth-root' autoComplete='off'>
-                <Typography variant='body1' className='auth-title'>
-                    <span>{title}</span>
-                    {connecting && <HeaderProgress />}
-                </Typography>
-                <Typography variant='body1' className='auth-subtitle' style={{ width: 264 }}>
-                    {t('StartText')}
-                </Typography>
-                <Autocomplete
-                    debug={false}
-                    id='country-select'
-                    noOptionsText={t('NoResult')}
-                    options={data || []}
-                    disabled={loading}
-                    autoHighlight
-                    getOptionLabel={option => option.name}
-                    renderOption={option => <Country name={option.name} emoji={option.emoji} phone={option.phone} />}
-                    renderInput={params => (
-                        <TextField
-                            classes={{ root: 'auth-input' }}
-                            {...params}
-                            label={t('Country')}
-                            variant='outlined'
-                            inputProps={{
-                                ...params.inputProps
-                            }}
-                            fullWidth
-                            autoComplete='off'
-                        />
-                    )}
-                    filterOptions={this.handleFilterOptions}
-                    value={country}
-                    onChange={this.handleCountryChange}
-                />
-                <TextField
-                    id='phoneNumber'
-                    classes={{ root: 'auth-input' }}
-                    inputRef={this.phoneInputRef}
-                    variant='outlined'
-                    color='primary'
-                    label={t('PhoneNumber')}
-                    disabled={loading}
-                    error={Boolean(errorString)}
-                    helperText={errorString}
-                    fullWidth
-                    autoFocus
-                    autoComplete='off'
-                    value={phone}
-                    onChange={this.handlePhoneChange}
-                    onKeyPress={this.handleKeyPress}
-                    onPaste={this.handlePaste}
-                />
-                <div className='sign-in-keep'>
-                    <Checkbox color='primary' checked={keep} disabled={loading} onChange={this.handleKeepChange} />
-                    <Typography variant='body1'>{t('KeepMeSignedIn')}</Typography>
-                </div>
-                <Button
-                    classes={{ root: 'auth-button' }}
-                    variant='contained'
-                    disableElevation
-                    fullWidth
-                    color='primary'
-                    disabled={loading}
-                    onClick={this.handleDone}>
-                    {t('Next')}
-                </Button>
-                <Typography className='sign-in-continue-on'>
-                    <Link onClick={this.handleQRCode}>
-                        {t('LogInViaQR')}
-                    </Link>
-                </Typography>
-                { !!nextLanguage && (
-                    <Typography className='sign-in-continue-on'>
-                        <Link onClick={this.handleChangeLanguage}>
-                            {t('ContinueOnThisLanguage', { lng: nextLanguage })}
-                        </Link>
-                    </Typography>
-                )}
-            </form>
-        );
+        return (<div></div>)
     }
 }
 

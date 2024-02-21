@@ -32,5 +32,5 @@ module.exports = {
     maximumFileSizeToCacheInBytes: 10485760,
     templateFilePath: './service-worker.tmpl',
     importScripts: ['./custom-service-worker.js'],
-    ignoreUrlParametersMatching: [/./]
+    ignoreUrlParametersMatching: [/./],
 };

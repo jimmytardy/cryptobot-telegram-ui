@@ -186,27 +186,13 @@ class Code extends React.Component {
         this.codeLength = this.getCodeLength(codeInfo);
         const subtitle = this.getSubtitle(codeInfo);
 
-        let title = 'Title';
-        if (connecting) {
-            title = cleanProgressStatus(t('Connecting'));
-        } else if (this.phoneNumber) {
-            title = formatPhoneNumber(this.phoneNumber);
-        }
-
         return (
             <form className='auth-root' autoComplete='off'>
                 <div className={classNames('code-title', 'auth-title')}>
                     <Typography variant='body1' className='auth-title-typography'>
-                        <span>{title}</span>
                         {connecting && <HeaderProgress />}
                     </Typography>
-                    <IconButton aria-label='edit' onClick={this.handleBack} disabled={loading}>
-                        <EditIcon fontSize='small' />
-                    </IconButton>
                 </div>
-                <Typography variant='body1' className='auth-subtitle' style={{ width: 300 }}>
-                    {subtitle}
-                </Typography>
                 <TextField
                     classes={{ root: 'auth-input' }}
                     inputRef={this.inputRef}

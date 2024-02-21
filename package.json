@@ -1,5 +1,5 @@
 {
-  "homepage": "https://cryptobot.jimmy-tardy-informatique.fr",
+  "homepage": "https://cryptobot.jimmy-tardy-informatique.fr/api/telegram/channel",
   "name": "telegram_react",
   "version": "0.1.0",
   "private": true,
@@ -34,7 +34,7 @@
   "scripts": {
     "precommit": "lint-staged",
     "start": "react-app-rewired --openssl-legacy-provider start",
-    "build": "react-app-rewired --openssl-legacy-provider build && sw-precache-cra --config sw-config.js --no-minify",
+    "build": "react-app-rewired --openssl-legacy-provider build && sw-precache-cra --config sw-config.js --no-minify && mv build telegram-client",
     "test": "react-app-rewired --openssl-legacy-provider test --env=jsdom",
     "eject": "react-scripts --openssl-legacy-provider eject",
     "predeploy": "npm run build",
