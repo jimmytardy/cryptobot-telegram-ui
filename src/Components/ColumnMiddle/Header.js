@@ -259,7 +259,7 @@ class Header extends Component {
                                 onClick={this.openChatDetails}
                             />
                         )}
-                        <PinnedMessage chatId={chatId} />
+                        {/* <PinnedMessage chatId={chatId} /> */}
                         {chat && (
                             <div className='header-right-buttons'>
                                 { pinned.length > 1 && (
@@ -270,11 +270,11 @@ class Header extends Component {
                                         <PlaylistEditIcon />
                                     </IconButton>
                                 )}
-                                <IconButton
+                                {/* <IconButton
                                     aria-label='Search'
                                     onClick={this.handleSearchChat}>
                                     <SearchIcon />
-                                </IconButton>
+                                </IconButton> */}
                                 <MainMenuButton openChatDetails={this.openChatDetails} />
                             </div>
                         )}

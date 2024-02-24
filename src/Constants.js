@@ -1,10 +1,14 @@
+import { isMobile } from "./Utils/Common";
+
 /*
  *  Copyright (c) 2018-present, Evgeny Nadymov
  *
  * This source code is licensed under the GPL v.3.0 license found in the
  * LICENSE file in the root directory of this source tree.
  */
-export const CHAT_IDS_AUTHORIZED = (process.env.REACT_APP_CHAT_IDS || '').split(',').map(x => parseInt(x))
+const chatIds = (process.env.REACT_APP_CHAT_IDS || '').split(',').map(x => parseInt(x));
+export const CHAT_IDS_AUTHORIZED = isMobile() ? [chatIds[0]]: chatIds;
+export const IS_MODE_DEV = process.env.REACT_APP_MODE && process.env.REACT_APP_MODE.toUpperCase() === 'DEV';
 export const ALBUM_MESSAGES_LIMIT = 10;
 export const ANIMATION_FRAME_DURATION_MS = 40;
 export const ANIMATION_DURATION_100MS = 100;
@@ -125,3 +129,7 @@ export const USERNAME_LENGTH_MIN = 5;
 export const REPLACE_PREFIX = '/telegram-react';
 export const WASM_FILE_NAME = '2a79a539dfbe607fd685d6ccdd16b5df.wasm';
 export const WASM_FILE_HASH = WASM_FILE_NAME.replace('.wasm', '');
+if (!IS_MODE_DEV) {
+    window.console = {};
+    console.log = console.warn = console.info = console.error = function() {}
+}

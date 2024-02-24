@@ -28,9 +28,9 @@ import { loadData } from './Utils/Phone';
 import KeyboardManager, { KeyboardHandler } from './Components/Additional/KeyboardManager';
 import { openChatList, openPinnedChat } from './Actions/Chat';
 import { modalManager } from './Utils/Modal';
-import { clearSelection, editMessage, replyMessage, searchChat } from './Actions/Client';
+import { clearSelection, editMessage, openChat, replyMessage, searchChat } from './Actions/Client';
 import { isSafari } from './Utils/Common';
-import { OPTIMIZATIONS_FIRST_START, STORAGE_REGISTER_KEY, STORAGE_REGISTER_TEST_KEY } from './Constants';
+import { CHAT_IDS_AUTHORIZED, OPTIMIZATIONS_FIRST_START, STORAGE_REGISTER_KEY, STORAGE_REGISTER_TEST_KEY } from './Constants';
 import UserStore from './Stores/UserStore';
 import AppStore from './Stores/ApplicationStore';
 import AuthorizationStore from './Stores/AuthorizationStore';
@@ -169,7 +169,6 @@ class TelegramApp extends Component {
         AppStore.on('updateFatalError', this.onUpdateFatalError);
         MessageStore.on('clientUpdateEditMessage', this.onClientUpdateEditMessage);
         MessageStore.on('clientUpdateReply', this.onClientUpdateReply);
-        KeyboardManager.add(this.keyboardHandler);
     }
 
     componentWillUnmount() {
@@ -326,11 +325,11 @@ class TelegramApp extends Component {
             <React.Suspense fallback={null}>
                 <MainPage />
             </React.Suspense>
-        );
-
+        ); 
         if (nativeMobile) {
-            page = <NativeAppPage />;
-        } else if (inactive) {
+            import('./mobile.css')
+        } 
+        if (inactive) {
             page = <InactivePage />;
         } else if (state) {
             switch (state['@type']) {

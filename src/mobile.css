@@ -1,0 +1,25 @@
+.dialogs {
+    display: none!important;;
+}
+
+.page-small .dialog-details {
+    max-width: 100% !important;
+}
+
+.message-padding, .chat-tile.tile-small, .message-tile-padding {
+    display: none!important;
+}
+
+.message-wrapper, .message-content, .album-wrapper, .album-item, .photo {
+    width: 100%!important;
+    height: auto!important;
+    min-width: auto!important;
+}
+
+.photo {
+    margin: auto!important;
+}
+
+.message-content {
+    margin: 0!important;
+}

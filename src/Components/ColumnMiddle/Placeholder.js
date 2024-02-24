@@ -10,6 +10,7 @@ import { withTranslation } from 'react-i18next';
 // import { ReactComponent as BubblesLogo } from '../../Assets/Bubbles.svg';
 import AppStore from '../../Stores/ApplicationStore';
 import './Placeholder.css';
+import { isMobile } from '../../Utils/Common';
 
 class Placeholder extends React.Component {
     constructor(props) {
@@ -83,7 +84,7 @@ class Placeholder extends React.Component {
             <div className='placeholder'>
                 <div className='placeholder-wrapper'>
                     {/*<BubblesLogo className='placeholder-logo' />*/}
-                    <div className='placeholder-meta'>{t('SelectChatToStartMessaging')}</div>
+                    <div className='placeholder-meta'>{isMobile() ? t('Loading') : t('SelectChatToStartMessaging')}</div>
                 </div>
             </div>
         );

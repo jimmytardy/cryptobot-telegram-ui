@@ -321,8 +321,6 @@ class DialogsList extends React.Component {
     async onLoadNext(replace = false, limit = CHAT_SLICE_LIMIT) {
         const { type } = this.props;
         const { chats, chatList, params } = this.state;
-        console.log('chats', chats)
-        console.log('chatList', chatList)
 
         // console.log('[folders] onLoadNext', chatList, limit);
         if (params.loading) {

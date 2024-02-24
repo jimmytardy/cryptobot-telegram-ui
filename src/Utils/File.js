@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import { getPhotoSize, getPhotoThumbnailSize, getSize } from './Common';
+import { getPhotoSize, getPhotoThumbnailSize, getSize, isMobile } from './Common';
 import { getChatUserId } from './Chat';
 import { getProfilePhoto } from './User';
 import { getLocationId } from './Message';
@@ -34,6 +34,7 @@ import FileStore from '../Stores/FileStore';
 import MessageStore from '../Stores/MessageStore';
 import UserStore from '../Stores/UserStore';
 import TdLibController from '../Controllers/TdLibController';
+import { openChat } from '../Actions/Client';
 
 export function supportsStreaming() {
     const { streaming } = TdLibController;
@@ -2064,6 +2065,7 @@ function loadChatsContent(store, ids) {
     if (!ids) return;
 
     ids.forEach(id => loadChatContent(store, id));
+    if (isMobile() && ids.length > 0) openChat(ids[0]);
 }
 
 function loadDraftContent(store, chatId) {
